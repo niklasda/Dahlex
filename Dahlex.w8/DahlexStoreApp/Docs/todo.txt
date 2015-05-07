@@ -1,0 +1,15 @@
+﻿
+state management redo suspensionmanger
+
+not drawing swipelines under and right
+
+Cannot start swipe on a line
+
+resume from tombstoned tutorial will not work, will resume as random game
+
+tutorial will not work when board is really small.
+
+put highscores in file instead of settings.
+
+option to clear highscores
+

@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="Dahlex.Views.SettingsFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Dahlex.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="346" Loaded="SettingsFlyout_OnLoaded" Unloaded="SettingsFlyout_OnUnloaded">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#FF232323" Opacity="0.6"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Tapped="UIElement_OnTapped" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="Settings" Style="{StaticResource PageSubheaderTextStyle}" Margin="114,0,6,52" Grid.ColumnSpan="2"/>
+        </Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Margin="42,36,0,0" TextWrapping="Wrap" Text="Name on high score list:" VerticalAlignment="Top" FontSize="20" Width="250"/>
+            <TextBox x:Name="txtPlayerName" HorizontalAlignment="Left" Margin="42,62,0,0" TextWrapping="Wrap" Text="Professor X" VerticalAlignment="Top" FontSize="20" Width="250" Height="43" MaxLength="100"/>
+            <ToggleSwitch x:Name="tsLessSound" Header="Sounds or Mute" HorizontalAlignment="Left" Margin="42,136,0,0" VerticalAlignment="Top" OffContent="Sounds" OnContent="Mute" IsOn="True" Height="80" Width="250" FontSize="20"/>
+        </Grid>
+
+    </Grid>
+</UserControl>
