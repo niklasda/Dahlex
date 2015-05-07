@@ -1,0 +1,109 @@
+http://dahlman.biz/dahlex
+
+ToDo
+-----
+http://mogade.com/
+
+Release Notes
+
+v1.6
+----
+Homepage replaced with 'rate it' button
+
+v1.5
+----
+settings 'name not saved' bugfix
+home page button removed since home page removed
+
+v1.4
+----
+WP8 support
+
+v1.3
+----
+New big tile icon
+35->45 random boards
+
+v1.2
+----
+mitigating the wierd crash in drawEllipse
+Campaigns->Tutorial
+
+v1.1
+----
+  Cleanup the XAP file
+
+x Swipe On Heaps and robots
+x Play button in HowTo page 
+x Campaign mode beta
+- Online boards
+x  Graphic hint about swipe direction to avoid annoying mistakes
+x  Game over/won graphic
+x number of robots seems to be hard coded as lvl+1
+x when starting new game, going back, starting new... fading dlg is blinking
+
+x new storyboard thingy does no go well on higher levels
+x button-click-swiping very annoying on higher levels
+
+  when bombing robot to nothing he should fade
+x  fixa bilden i HowTo
+x lines drawn wrong when starting on heap or robot or prof
+X second level of campaign does not end when robots die
+  width<->height mixup
+x quirks
+--
+x must start swiping on free square
+
+bugs
+--
+x fix the animation leak on 3-way collision or bombing, caused by reused timelines
+
+v1.0
+----
+x Swipe under griden flyttar professorn
+  Tap on heap/robot does not count as Tap
+  HowTo needs nice image
+x 2 robots colliding results in 1 animation surviving if quick, the first robot to move does not collide and thus the animation woll not be disabled
+
+- Obscuring
+x Tombstoning
+x Disabla Bomb och Tele knapparna vid behov
+x Loggen innehåller för mycket –newlines
+x Prevent landscape eftersom det inte är relevand förrutom förstasidan
+x HowTo can be mended
+- Restore from tomb resets timer
+- Det blir en heap när 2 botar kolliderar
+- Highscore service online
+x local highscore in isolated storag
+x make page resizable so it can run on a phone
+x check if silverlight will be in windows mobile 7
+x serialization of highscores
+x serialization av spelplan
+- cleanup animations and images, and fix the leak, 3-way collision or bombing
+- save professor location and heaps (not generating new ones) to next level
+x Crash when restoring lost game
+x move counter not reset between games
+x ruträkning vid klick
+x initial and first moved position is not same
+x microsoft.phone.shell.systemtray.isvisible = false;
+v support landscape
+x compositor thread for storyboards
+x Launchers and chosers
+- application bar 
+x messagebox.show
+- panorama
+x gesture service
+- AgUnit
+x Trial API
+x Klockan stannar
+x Kollisionsljud
+- level won ljud
+- Gå-mot-fingret-mode
+x mute alla ljud
+x kolla vibrato funktionen och längden
+  kolla swipeområdeskoordinaterna som är hårdkodade, skulle kanske kunna vara bg-bildens område.
+- Random + Campaign mode
+
+
+x = fixed
+- = rejected

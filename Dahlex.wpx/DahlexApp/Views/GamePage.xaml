@@ -1,0 +1,101 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Dahlex.Views.GamePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False" Loaded="GamePage_Loaded" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" Unloaded="PhoneApplicationPage_Unloaded">
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <!--ContentPanel - place additional content here-->
+
+        <Grid x:Name="DahlexContent" Grid.Row="1" Margin="0,0,0,0">
+            <Grid.Background>
+                <ImageBrush Stretch="None" AlignmentY="Top" AlignmentX="Left" ImageSource="/Dahlex;component/Images/spelplan2.png" />
+            </Grid.Background>
+
+            <Canvas x:Name="cnvMovement">
+            </Canvas>
+            <Canvas x:Name="cnvLines">
+                <Line X1="0" Y1="0" X2="0" Y2="0" Width="480" Height="568" StrokeThickness="1" x:Name="lineDir" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" Stroke="Black" StrokeDashCap="Square" StrokeEndLineCap="Round" StrokeStartLineCap="Triangle"></Line>
+                <Line X1="0" Y1="0" X2="0" Y2="0" Width="480" Height="568" Stroke="#555555" StrokeThickness="1" x:Name="guideNwSe" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" />
+                <Line X1="0" Y1="0" X2="0" Y2="0" Width="480" Height="568" Stroke="#555555" StrokeThickness="1" x:Name="guideNeSw" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" />
+                <Ellipse Height="0" Width="0" HorizontalAlignment="Left" Canvas.Top="0" Canvas.Left="0" Margin="0,0,0,0" x:Name="ellipseBomb" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" />
+                <TextBlock Canvas.Left="18" Canvas.Top="599" Height="30" x:Name="txtBoardMessage" Text="" Width="441" />
+            </Canvas>
+
+            <Canvas x:Name="cnvControls" Height="150" VerticalAlignment="Bottom">
+                <Button Content="Bomb"     HorizontalAlignment="Left" Margin="0,0,0,0"    x:Name="btnBomb" VerticalAlignment="Top" Click="btnBomb_Click" Width="230" Canvas.Left="0" Canvas.Top="0" />
+                <Button Content="Teleport" HorizontalAlignment="Left" Margin="110,0,0,0"  x:Name="btnTeleport" VerticalAlignment="Top" Click="btnTeleport_Click" Canvas.Left="140" Width="230" Canvas.Top="0" />
+                <TextBlock Height="30" HorizontalAlignment="Left" Margin="10,100,0,0"  x:Name="lblLevel" Text="Level" VerticalAlignment="Top" Width="83" />
+                <TextBlock Height="30" HorizontalAlignment="Left" Margin="10,70,0,0"   x:Name="lblBombs" Text="Dahlex" VerticalAlignment="Top" />
+                <TextBlock Height="30" HorizontalAlignment="Left" Margin="200,100,0,0" x:Name="lblElapsed" Text="Elapsed" VerticalAlignment="Top" />
+
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Storyboard x:Name="storyProf">
+                            <DoubleAnimation Storyboard.TargetName="imgProfessor"
+                                     Storyboard.TargetProperty="(Canvas.Left)"
+                                     Duration="0:0:1"
+                                     x:Name="aniProfLeft" AutoReverse="False" />
+                            <DoubleAnimation Storyboard.TargetName="imgProfessor"
+                                     Storyboard.TargetProperty="(Canvas.Top)"
+                                     Duration="0:0:1"
+                                     x:Name="aniProfTop" AutoReverse="False" />
+                        </Storyboard>
+
+                        <Storyboard x:Name="storyMessages"></Storyboard>
+                        <Storyboard x:Name="storyFade"></Storyboard>
+                        <Storyboard x:Name="storyBomb"></Storyboard>
+                    </StackPanel.Resources>
+                </StackPanel>
+                <StackPanel x:Name="storyPanel">
+                    <StackPanel.Resources>
+                        <!-- dynamically generated storyboards-->
+                    </StackPanel.Resources>
+                </StackPanel>
+
+            </Canvas>
+            <Canvas x:Name="cnvMessage" Height="450" VerticalAlignment="Top" Opacity="0.70" Visibility="Collapsed">
+
+                <Rectangle Height="200" HorizontalAlignment="Left" Margin="65,160,0,0" x:Name="rectMessage" Stroke="Black" StrokeThickness="2" VerticalAlignment="Top" Width="350">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="/Dahlex;component/Images/greenbackground.png" Stretch="None" />
+                    </Rectangle.Fill>
+
+                </Rectangle>
+                <TextBlock Height="51" HorizontalAlignment="Left" Margin="83,170,0,0" x:Name="textMessage" Text="Game" VerticalAlignment="Top" Width="319" Foreground="#FF123108" FontSize="40" FontWeight="Medium" TextAlignment="Center" />
+                <HyperlinkButton Content="Start" Height="47" Margin="83,240,0,0" x:Name="hyperMessage1" VerticalAlignment="Center" Foreground="#FF123108" HorizontalAlignment="Left" Width="319" Click="hyperMessage_Click" FontSize="30" Canvas.Top="-10" />
+                <HyperlinkButton Content="Start" Height="57" Margin="83,300,0,0" x:Name="hyperMessage2" VerticalAlignment="Center" Foreground="#FF123108" HorizontalAlignment="Left" Width="319" Click="hyperMessage_Click" FontSize="30" Canvas.Top="-17" />
+            </Canvas>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
